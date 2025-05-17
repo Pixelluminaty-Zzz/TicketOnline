@@ -1,0 +1,182 @@
+<div class="form-container">
+  <!-- FORMULARIO DE INICIO DE SESIÓN -->
+  <div class="formulario" [class.activo]="isLoginActive">
+    <h2>Iniciar Sesión</h2>
+    <form (ngSubmit)="onLoginSubmit()">
+      <div class="form-group">
+        <label for="loginCorreo">Correo Electrónico</label>
+        <input
+          type="email"
+          id="loginCorreo"
+          [(ngModel)]="loginEmail"
+          name="loginCorreo"
+          required
+          class="form-control"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="loginPassword">Contraseña</label>
+        <div class="password-wrapper">
+          <input
+            [type]="showLoginPassword ? 'text' : 'password'"
+            id="loginPassword"
+            [(ngModel)]="loginPassword"
+            name="loginPassword"
+            required
+            class="form-control"
+          />
+          <button
+            type="button"
+            class="btn btn-outline-secondary show-btn"
+            (click)="togglePassword('login')"
+          >
+            {{ showLoginPassword ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Ingresar</button>
+      <div id="mensajeLogin" class="mensaje">{{ loginMessage }}</div>
+    </form>
+
+    <div class="toggle-link mt-3">
+      <p>
+        ¿No tienes una cuenta?
+        <a href="#" (click)="switchToRegister()">Regístrate aquí</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- FORMULARIO DE REGISTRO -->
+  <div class="formulario" [class.activo]="!isLoginActive">
+    <h2>Registro de Usuario</h2>
+    <form (ngSubmit)="onRegisterSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input
+          id="nombre"
+          [(ngModel)]="nombre"
+          name="nombre"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="apellidoP">Apellido Paterno</label>
+        <input
+          id="apellidoP"
+          [(ngModel)]="apellidoP"
+          name="apellidoP"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="apellidoM">Apellido Materno</label>
+        <input
+          id="apellidoM"
+          [(ngModel)]="apellidoM"
+          name="apellidoM"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input
+          id="telefono"
+          [(ngModel)]="telefono"
+          name="telefono"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="edad">Edad</label>
+        <input
+          type="number"
+          id="edad"
+          [(ngModel)]="edad"
+          name="edad"
+          class="form-control"
+          required
+          min="1"
+        />
+      </div>
+      <div class="form-group">
+        <label for="correo">Correo Electrónico</label>
+        <input
+          type="email"
+          id="correo"
+          [(ngModel)]="correo"
+          name="correo"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="contrasena">Contraseña</label>
+        <div class="password-wrapper">
+          <input
+            [type]="showRegisterPassword ? 'text' : 'password'"
+            id="contrasena"
+            [(ngModel)]="contrasena"
+            name="contrasena"
+            class="form-control"
+            required
+          />
+          <button
+            type="button"
+            class="btn btn-outline-secondary show-btn"
+            (click)="togglePassword('register')"
+          >
+            {{ showRegisterPassword ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmarContrasena">Confirmar Contraseña</label>
+        <div class="password-wrapper">
+          <input
+            [type]="showRegisterPassword ? 'text' : 'password'"
+            id="confirmarContrasena"
+            [(ngModel)]="confirmarContrasena"
+            name="confirmarContrasena"
+            class="form-control"
+            required
+          />
+          <button
+            type="button"
+            class="btn btn-outline-secondary show-btn"
+            (click)="togglePassword('register')"
+          >
+            {{ showRegisterPassword ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+      </div>
+
+      <div
+        [ngClass]="{
+          'match-status': true,
+          correcto: passwordsMatch(),
+          error: !passwordsMatch()
+        }"
+      >
+        {{ passwordMessage }}
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Registrar</button>
+      <div id="mensajeRegistro" class="mensaje">{{ registerMessage }}</div>
+    </form>
+
+    <div class="toggle-link mt-3">
+      <p>
+        ¿Ya tienes una cuenta?
+        <a href="#" (click)="switchToLogin()">Iniciar sesión</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,164 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #eafbea, #fdfaf1);
+}
+
+.form-container {
+  max-width: 500px;
+  margin: 100px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.formulario {
+  display: none;
+}
+
+.formulario.activo {
+  display: block;
+}
+
+.form-group, .grid > div {
+  margin-bottom: 15px;
+}
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.password-wrapper .show-btn {
+  margin-left: 10px;
+}
+
+.mensaje {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.mensaje.success {
+  color: green;
+}
+
+.mensaje.error {
+  color: red;
+}
+
+.match-status {
+  font-size: 0.9em;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.correcto {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+/* Ocultar cartelera al inicio */
+#carteleraView {
+  display: none;
+}
+
+/* Estilos cartelera */
+.navbar {
+  background: linear-gradient(90deg, #4a7c59, #2e4734);
+  border-bottom: 3px solid #d4af37;
+  height: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar .logo-img {
+  height: 45px;
+  border-radius: 8px;
+}
+
+.user-dropdown .dropdown-toggle {
+  color: white;
+  font-weight: bold;
+  background: none;
+  border: none;
+}
+
+.user-dropdown .dropdown-menu {
+  background-color: #f9fdf9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cartelera {
+  max-width: 1200px;
+  margin: auto;
+  padding: 100px 20px 40px;
+}
+
+.pelicula {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.pelicula:hover {
+  transform: translateY(-5px);
+}
+
+.pelicula img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+.pelicula .info {
+  padding: 20px;
+}
+
+.pelicula .info h5 {
+  color: #4a7c59;
+  font-weight: bold;
+}
+
+.btn-comprar {
+  background-color: #d4af37;
+  border: none;
+  color: white;
+  width: 100%;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.btn-comprar:hover {
+  background-color: #b9982e;
+}
+
+footer {
+  background-color: #4a7c59;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+}

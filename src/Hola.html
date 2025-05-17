@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TicketOnline - Autenticación y Cartelera</title>
+</head>
+<body>
+
+<!-- Autenticación -->
+<div id="authView">
+  <div class="form-container">
+    <!-- FORMULARIO DE INICIO DE SESIÓN -->
+    <div id="loginForm" class="formulario activo">
+      <h2>Iniciar Sesión</h2>
+      <form>
+        <div class="form-group">
+          <label for="loginCorreo">Correo Electrónico</label>
+          <input type="email" id="loginCorreo" required class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label for="loginPassword">Contraseña</label>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" required class="form-control"/>
+            <button type="button" class="btn btn-outline-secondary show-btn" onclick="togglePassword('loginPassword', this)">Mostrar</button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100">Ingresar</button>
+        <div id="mensajeLogin" class="mensaje"></div>
+      </form>
+
+      <div class="toggle-link mt-3">
+        <p>¿No tienes una cuenta? <a href="#" onclick="mostrarFormulario('registroForm')">Registrate aquí</a></p>
+      </div>
+    </div>
+
+    <!-- FORMULARIO DE REGISTRO -->
+    <div id="registroForm" class="formulario">
+      <h2>Registro de Usuario</h2>
+      <form id="formRegistro">
+        <div class="form-group"><label for="nombre">Nombre</label><input type="text" id="nombre" class="form-control" required /></div>
+        <div class="form-group"><label for="apellidoP">Apellido Paterno</label><input type="text" id="apellidoP" class="form-control" required /></div>
+        <div class="form-group"><label for="apellidoM">Apellido Materno</label><input type="text" id="apellidoM" class="form-control" required /></div>
+        <div class="form-group"><label for="telefono">Teléfono</label><input type="text" id="telefono" class="form-control" required /></div>
+        <div class="form-group"><label for="edad">Edad</label><input type="number" id="edad" class="form-control" min="1" required /></div>
+        <div class="form-group"><label for="correo">Correo Electrónico</label><input type="email" id="correo" class="form-control" required /></div>
+
+        <div class="form-group">
+          <label for="contrasena">Contraseña</label>
+          <div class="password-wrapper">
+            <input type="password" id="contrasena" class="form-control" required />
+            <button type="button" class="btn btn-outline-secondary show-btn" onclick="togglePassword('contrasena', this)">Mostrar</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmarContrasena">Confirmar Contraseña</label>
+          <div class="password-wrapper">
+            <input type="password" id="confirmarContrasena" class="form-control" required />
+            <button type="button" class="btn btn-outline-secondary show-btn" onclick="togglePassword('confirmarContrasena', this)">Mostrar</button>
+          </div>
+        </div>
+
+        <div id="estadoCoincidencia" class="match-status"></div>
+
+        <button type="submit" class="btn btn-primary w-100">Registrar</button>
+        <div id="mensajeRegistro" class="mensaje"></div>
+      </form>
+
+      <div class="toggle-link mt-3">
+        <p>¿Ya tienes una cuenta? <a href="#" onclick="mostrarFormulario('loginForm')">Iniciar sesión</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Cartelera -->
+<div id="carteleraView">
+  <div class="navbar">
+    <img src="/TicketOnlineLogoR.png" alt="Logo TicketOnline" class="logo-img" />
+    <div class="d-flex align-items-center flex-grow-1 justify-content-end gap-3">
+      <input type="text" class="form-control" placeholder="Buscar película..." style="max-width: 250px;">
+      <a href="#" class="btn btn-outline-light">🎫 Mis boletos</a>
+      <div class="dropdown user-dropdown">
+        <button class="dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          Juan Pérez
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+          <li><a class="dropdown-item" href="#">👤 Mi Perfil</a></li>
+          <li><a class="dropdown-item" href="#">🏠 Domicilio</a></li>
+          <li><a class="dropdown-item" href="#">💳 Formas de Pago</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="#" onclick="cerrarSesion()">🔓 Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="cartelera container">
+    <h2 class="text-center mb-5 text-success">🎬 Cartelera</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="pelicula">
+          <img src="/Minecraft.jpg" alt="Minecraft" />
+          <div class="info">
+            <h5>Una película de Minecraft</h5>
+            <p>🎞️ Aventura, Comedia<br>🕒 1h 41min<br>🔞 PG<br>⭐ 4.5/5</p>
+            <button class="btn-comprar">Comprar boleto</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="pelicula">
+          <img src="PeterPan.jpg" alt="Póster película" />
+          <div class="info">
+            <h5>Peter Pan: Pesadilla en Nunca Jamás</h5>
+            <p>🎞️ Género: Terror<br>🕒 Duración: 1h 28min<br>🔞 Clasificación: R+14<br>⭐ 4.8/5</p>
+            <button class="btn-comprar">Comprar boleto</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="pelicula">
+          <img src="/Blancanieves.jpg" alt="Póster película" />
+          <div class="info">
+            <h5>Blanca Nieves</h5>
+            <p>🎞️ Género: Aventura familiar, fantasía<br>🕒 Duración: 1h 49min<br>🔞 Clasificación: B+<br>⭐ 0.8/5</p>
+            <button class="btn-comprar">Comprar boleto</button>
+          </div>
+        </div>
+      </div>
+      <!-- Para agregar mas pelis -->
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 TicketOnline. Todos los derechos reservados. </p>
+  </footer>
+</div>
+
+<script>
+  function togglePassword(id, button) {
+    const input = document.getElementById(id);
+    input.type = input.type === "password" ? "text" : "password";
+    button.textContent = input.type === "text" ? "Ocultar" : "Mostrar";
+  }
+
+  function mostrarFormulario(idMostrar) {
+    document.querySelectorAll(".formulario").forEach(f => f.classList.remove("activo"));
+    document.getElementById(idMostrar).classList.add("activo");
+  }
+
+  document.getElementById("confirmarContrasena").addEventListener("input", () => {
+    const pass = document.getElementById("contrasena");
+    const confirm = document.getElementById("confirmarContrasena");
+    const estado = document.getElementById("estadoCoincidencia");
+    if (confirm.value === "") {
+      estado.textContent = "";
+      return;
+    }
+    if (pass.value === confirm.value) {
+      estado.textContent = "✔ Las contraseñas coinciden";
+      estado.className = "match-status correcto";
+    } else {
+      estado.textContent = "✖ Las contraseñas no coinciden";
+      estado.className = "match-status error";
+    }
+  });
+
+  document.getElementById("formRegistro").addEventListener("submit", e => {
+    e.preventDefault();
+    const pass = document.getElementById("contrasena").value;
+    const confirm = document.getElementById("confirmarContrasena").value;
+    const mensaje = document.getElementById("mensajeRegistro");
+    if (pass !== confirm) {
+      mensaje.textContent = "Las contraseñas no coinciden.";
+      mensaje.className = "mensaje error";
+    } else {
+      mensaje.textContent = "Registro exitoso.";
+      mensaje.className = "mensaje success";
+    }
+  });
+
+  document.querySelector("#loginForm form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const correo = document.getElementById("loginCorreo").value;
+    const password = document.getElementById("loginPassword").value;
+    const mensajeLogin = document.getElementById("mensajeLogin");
+
+    if (correo === "emmanuel.mata.vz@gmail.com" && password === "1234") {
+      mensajeLogin.textContent = "Inicio de sesión exitoso.";
+      mensajeLogin.className = "mensaje success";
+
+      setTimeout(() => {
+        document.getElementById("authView").style.display = "none";
+        document.getElementById("carteleraView").style.display = "block";
+      }, 1000);
+    } else {
+      mensajeLogin.textContent = "Correo o contraseña incorrectos.";
+      mensajeLogin.className = "mensaje error";
+    }
+  });
+
+  function cerrarSesion() {
+    document.getElementById("carteleraView").style.display = "none";
+    document.getElementById("authView").style.display = "block";
+    document.getElementById("loginForm").classList.add("activo");
+    document.getElementById("registroForm").classList.remove("activo");
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+.formulario.activo {
+  display: block;
+}
+
+.formulario {
+  display: none;
+}
+
+.match-status {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.correcto {
+  color: green;
+}
+
+.error {
+  color: red;
+}
+
+.input-spacing {
+  margin-bottom: 10px;
+}
